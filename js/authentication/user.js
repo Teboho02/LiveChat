@@ -7,7 +7,7 @@ export default class User{
     #userId;
     #password;
 
-    constructor(name, email, password, window){
+    constructor(name, email, password){
 
         if(!name || !email || !password || name.trim() === "" || email.trim() === "" || password.trim() === ""){
             throw new Error("All fields are required");
@@ -37,11 +37,10 @@ export default class User{
     
         const existingUsers = JSON.parse(localStorage.getItem("Users")) || [];
         existingUsers.push(UserString);
-        this.window.localStorage.setItem("Users", JSON.stringify(existingUsers));
+        localStorage.setItem("Users", JSON.stringify(existingUsers));
     }
 
 }
 const user = new User("Teboho", "teboho@example.com", "password123");
 console.log(user);
 
-//example Users = '["{"name: "Teboho", email: "teboho@example.com", password: "encrypted_password", userId: "unique_id"}", "{"name: "John", email: "john@example.com", password: "encrypted_password", userId: "unique_id"}"]'

@@ -1,58 +1,35 @@
 import Encryption from "../utils/encryption.js";
 import User from './user.js';
-export default class Authentication
- {
 
-    constructor(){
+export default class Authentication {
+    constructor() {
     }
 
-
-
-     login(email, password) {
-
-
-
-        //validate the information against the localStorage
-
-        window.localStorage.setItem("lastname", "Smith");
-        console.log("Testing localStorage access:", window.localStorage.getItem("lastname"));
-
-
+    static login(email, password) {
         const users = JSON.parse(window.localStorage.getItem("Users"));
-
 
         if (!users) {
             throw new Error("No users found in localStorage");
         }
 
-
-        users.forEach(userObj => {
+        for (let userObj of users) {
             userObj = JSON.parse(userObj);
-            if(userObj.email === email && userObj.password === Encryption.decrypt(password, email)) {
-                return {'status':'success', ...userObj};
+
+            if (userObj.email === '2@gmail.com') {
+                console.log(`the password is ${Encryption.decrypt('2@gmail.com', '2@gmail.com')}`);
             }
-        });
 
+            if (userObj.email === email && Encryption.decrypt(userObj.password, email) === password) {
+                return { status: 'success', ...userObj };
+            }
+        }
 
-        return "Invalid email or password";
-
+        return { status: 'error', message: "Invalid email or password" };
     }
 
-
-     createAccount(name, email, password) {
-
+    static createAccount(name, email, password) {
         const newUser = new User(name, email, password);
         newUser.save();
-        return newUser;
-
+        return { ...newUser, status: 'success' };
     }
-
-    test(){
-            window.localStorage.setItem("lastname", "Smith");
-
-    }
-
 }
-
-
-

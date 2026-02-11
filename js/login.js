@@ -11,11 +11,12 @@ form.addEventListener('submit', function(event) {
     
     console.log("Login attempt:", { email, password });
 
-    const authennticate = new Authentication();
-    authennticate.login(email, password);
-    authennticate.test();
-    if (authennticate.status === 'success') {
+    const authennticate = Authentication.login(email, password);
+
+  if (authennticate.status === 'success') {
         console.log("Login successful:", authennticate);
+
+        window.location.href = './main.html'
     }else{
         console.log("Login failed:", authennticate);
     }
