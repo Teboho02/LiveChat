@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - LiveChat</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <section class="leftSection">
+            <div class="Header">
+                <img src="../assets/icons/logo.png" alt="LiveChat Logo" id="icon">
+                <input class="searchBar" type="text" placeholder="Search...">
+            </div>
+            
+            <!-- Chat list goes here in left section -->
+            <div id="chatListContainer"></div>
+        </section>
+
+        <section class="rightSection">
+            <div id="messageContainer">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Mock data for chat list
+        const chats = [
+            {
+                image: "../assets/download.jpg",
+                name: "Teboho",
+                lastMessage: "Hey, how are you?",
+                time: "2:30 PM"
+            },
+            {
+                image: "../assets/download.jpg",
+                name: "Sarah Johnson",
+                lastMessage: "See you tomorrow!",
+                time: "1:15 PM"
+            },
+            {
+                image: "../assets/download.jpg",
+                name: "Mike Chen",
+                lastMessage: "Thanks for your help",
+                time: "Yesterday"
+            }
+        ];
+
+        // Mock conversation data
+        const mockConversation = {
+            name: "Teboho",
+            image: "../assets/download.jpg",
+            messages: [
+                { text: "Hey, how are you?", sent: false, time: "2:28 PM" },
+                { text: "I'm doing great! Thanks for asking.", sent: true, time: "2:29 PM" },
+                { text: "That's good to hear!", sent: false, time: "2:30 PM" },
+                { text: "How's your project going?", sent: false, time: "2:30 PM" },
+                { text: "It's going well. Almost finished!", sent: true, time: "2:31 PM" },
+                { text: "Awesome! Let me know if you need any help.", sent: false, time: "2:32 PM" }
+            ]
+        };
+
+        // Render chat list
+        function renderChatList() {
+            const chatListHTML = chats.map((chat, index) => `
+                <div class="chatList" onclick="openChat(${index})">
+                    <img src="${chat.image}" class="userImage" alt="${chat.name}">
+                    <div class="Contents">
+                        <div class="chatHeader">
+                            <div class="Name">${chat.name}</div>
+                            <div class="Time">${chat.time}</div>
+                        </div>
+                        <div class="LastMessage">${chat.lastMessage}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelector("#chatListContainer").innerHTML = chatListHTML;
+        }
+
+        // Open chat and show messages
+        function openChat(index) {
+            const chat = chats[index];
+            
+            const messagesHTML = `
+                <div class="chatHeader">
+                    <div class="chatHeaderLeft">
+                        <img src="${mockConversation.image}" class="userImage" alt="${mockConversation.name}">
+                        <div class="chatHeaderInfo">
+                            <div class="chatName">${mockConversation.name}</div>
+                            <div class="chatStatus">Active now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messagesArea">
+                    ${mockConversation.messages.map(msg => `
+                        <div class="messageWrapper ${msg.sent ? 'sent' : 'received'}">
+                            <div class="messageBubble ${msg.sent ? 'sentBubble' : 'receivedBubble'}">
+                                <div class="messageText">${msg.text}</div>
+                                <div class="messageTime">${msg.time}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="messageInputArea">
+                    <input type="text" class="messageInput" placeholder="Type a message...">
+                    <button class="sendButton">Send</button>
+                </div>
+            `;
+
+            document.querySelector("#messageContainer").innerHTML = messagesHTML;
+        }
+
+        // Initialize
+        renderChatList();
+    </script>
+</body>
+</html>
