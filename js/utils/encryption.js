@@ -1,6 +1,3 @@
-
-
-
 class Encryption {
 
     /*
@@ -42,6 +39,8 @@ class Encryption {
         return decrypted;
     }
  
+
+
 
 
 }
