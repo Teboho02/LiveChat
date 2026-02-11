@@ -21,13 +21,9 @@ form.addEventListener('submit', function(event) {
 
     console.log("New account", newAccount);
 
-    if(newAccount.status === 'sucess'){
-        console.log("Account created successfully");
-        
-        alert('Account created successfully!');
+    alert("new account created");
 
-        setTimeout(() => {
-            window.location.href = './sign-in.html';
-        }, 1000);
-    }
+    window.location.href = './sign-in.html';
+
+
 });
