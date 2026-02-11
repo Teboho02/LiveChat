@@ -14,10 +14,8 @@
                 <input class="searchBar" type="text" placeholder="Search">
             </div>
             
-            <!-- Chat list goes here in left section -->
             <div id="chatListContainer"></div>
             
-            <!-- Bottom tabs -->
             <div class="bottomTabs">
                 <div class="tab active">Chats</div>
                 <div class="tab">Groups</div>
@@ -26,7 +24,6 @@
 
         <section class="rightSection">
             <div id="messageContainer">
-                <!-- Messages will be loaded here -->
             </div>
         </section>
     </div>
@@ -125,7 +122,6 @@
             document.querySelector("#messageContainer").innerHTML = messagesHTML;
         }
 
-        // Initialize
         renderChatList();
         openChat(0); // Open first chat by default
     </script>

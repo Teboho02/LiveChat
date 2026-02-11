@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - LiveChat</title>
     <link rel="stylesheet" href="../styles/sign-in.css">
+    <script src="../js/login.js" type="module"></script>
 </head>
 <body>
     <div class="Header">
@@ -17,25 +18,19 @@
             "Connect instantly with the people who matter most. Simple, fast, and built for real conversations."    
         </h2>
         
-        <form >
-
-            
-
+        <form>
             <label for="username">Email</label>
-            <input  class="formInputFields" type="email" id="username" name="username" placeholder="" required>
+            <input class="formInputFields" type="email" id="username" name="username" placeholder="" required>
             
             <label for="password">Password</label>
             <input class="formInputFields" type="password" id="password" name="password" placeholder="" required>
             
-            <input class="formBtn" type="submit" value="Log In">
+            <button class="formBtn" type="submit" id="loginBtn">Log In</button>
 
             <p>Or</p>
 
-            <input class="formBtn" type="submit" value="Create Account">
-
-
+            <button class="formBtn" type="button" id="createAccountBtn">Create Account</button>
         </form>
-        </div>
     </div>
 </body>
 </html>

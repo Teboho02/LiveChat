@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - LiveChat</title>
-    <link rel="stylesheet" href="../styles/sign-up.css">
-</head>
-<body>
-    <div class="Header">
-        <h1>LiveChat</h1>
-        <img src="../assets/icons/logo.png" alt="LiveChat Logo">
-    </div>
-
-    <div class="PageContent">
-        <h2>
-            "Connect instantly with the people who matter most. Simple, fast, and built for real conversations."    
-        </h2>
-        
-        <form >
-
-            <label for="Name">Name</label>
-            <input  class="formInputFields" type="text" id="name" name="name" placeholder="" required>
-            
-
-            <label for="username">Email</label>
-            <input  class="formInputFields" type="email" id="username" name="username" placeholder="" required>
-            
-            <label for="password">Password</label>
-            <input class="formInputFields" type="password" id="password" name="password" placeholder="" required>
-            
-
-               <label for="confirmPassword">Confirm Password</label>
-            <input class="formInputFields" type="password" id="confirmPassword" name="confirmPassword" placeholder="" required>
-            
-            <input class="formBtn" type="submit" value="Sign Up">
-
-
-
-
-        </form>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up - LiveChat</title>
+        <link rel="stylesheet" href="../styles/sign-up.css">
+        <script src="../js/sign-up.js" type="module"></script>
+    </head>
+    <body>
+        <div class="Header">
+            <h1>LiveChat</h1>
+            <img src="../assets/icons/logo.png" alt="LiveChat Logo">
         </div>
-    </div>
-</body>
-</html>
+
+        <div class="PageContent">
+            <h2>
+                "Connect instantly with the people who matter most. Simple, fast, and built for real conversations."    
+            </h2>
+            
+    <form id="signupForm">
+    <label for="name">Name</label>
+    <input class="formInputFields" type="text" id="name" name="name " placeholder="" required>
+    
+    <label for="email">Email</label>
+    <input class="formInputFields" type="email" id="email" name="email" placeholder="" required>
+    
+    <label for="password">Password</label>
+    <input class="formInputFields" type="password" id="password" name="password" placeholder="" required>
+    
+    <label for="confirmPassword">Confirm Password</label>
+    <input class="formInputFields" type="password" id="confirmPassword" name="confirmPassword" placeholder="" required>
+    
+    <input class="formBtn" type="submit" value="Sign Up">
+</form>
+            </div>
+        </div>
+    </body>
+    </html>
