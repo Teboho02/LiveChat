@@ -14,6 +14,10 @@ form.addEventListener('submit', function(event) {
     const authennticate = Authentication.login(email, password);
 
   if (authennticate.status === 'success') {
+
+
+        window.sessionStorage.setItem('currentUser', JSON.stringify(authennticate));
+
         console.log("Login successful:", authennticate);
 
         window.location.href = './main.html'
