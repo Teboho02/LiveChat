@@ -1,13 +1,14 @@
 
 
-export class Groups {
+export default class Groups {
 
 
-    constructor(){
+    constructor(name){
 
             this.members = [];
             this.groupMessages = [];
             this.groupId = this.generateUniqueGroupId();
+            this.groupName = name;
 
     }
 

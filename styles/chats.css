@@ -186,7 +186,6 @@
     cursor: not-allowed;
 }
 
-/* Message Bubbles */
 .message-wrapper {
     display: flex;
     margin: 10px 0;
@@ -215,9 +214,7 @@
     background: #dfdffc;
 }
 
-.message-text {
-    word-wrap: break-word;
-}
+
 
 .message-time {
     font-size: 11px;
@@ -226,9 +223,3 @@
     text-align: right;
 }
 
-/* No Messages State */
-.no-messages {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-}

@@ -1,5 +1,6 @@
 import Messages from '../js/chatService/message.js'
 
+
 function getAllUsers() {
     const users = JSON.parse(localStorage.getItem('Users')) || {};
     // Convert object to array of user objects
@@ -7,8 +8,15 @@ function getAllUsers() {
     return usersArray;
 }
 
+function getAllGroups(){
+const groups = JSON.parse(localStorage.getItem('Groups')) || {};
+const groupsArray = Object.values(groups);
+
+return groupsArray;
+}
 // Add to your initialization section
 window.addEventListener('storage', function(e) {
+
     if (e.key === 'Users') {
         console.log('Storage event detected for Users key:', e);
         
@@ -33,9 +41,12 @@ window.addEventListener('storage', function(e) {
         
         // Refresh user list
         allUsers = getAllUsers();
+        allGroups = getAllGroups();
         renderChatList(allUsers);
     }
 });
+
+
 
 // Get current logged-in user
 function getCurrentUser() {
@@ -95,6 +106,7 @@ function addUserToSubscriptions(userId) {
 // Store all users for search
 let allUsers = [];
 let currentUser = null;
+
 
 // Initialize users on page load
 function initializeUsers() {
