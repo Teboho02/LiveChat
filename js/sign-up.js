@@ -19,7 +19,6 @@ form.addEventListener('submit', function(event) {
 
     let newAccount = Authentication.createAccount(name, email, password);
 
-    console.log("New account", newAccount);
 
     alert("new account created");
 

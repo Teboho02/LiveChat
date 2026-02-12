@@ -5,28 +5,31 @@ export default class Authentication {
     constructor() {
     }
 
-    static login(email, password) {
-        const users = JSON.parse(window.localStorage.getItem("Users"));
+static login(email, password) {
+    const users = JSON.parse(window.localStorage.getItem("Users"));
 
-        if (!users) {
-            throw new Error("No users found in localStorage");
-        }
-
-        for (let userObj of users) {
-            userObj = JSON.parse(userObj);
-
-            if (userObj.email === '2@gmail.com') {
-                console.log(`the password is ${Encryption.decrypt('2@gmail.com', '2@gmail.com')}`);
-            }
-
-            if (userObj.email === email && Encryption.decrypt(userObj.password, email) === password) {
-                return { status: 'success', ...userObj };
-            }
-        }
-
-        return { status: 'error', message: "Invalid email or password" };
+    if (!users) {
+        throw new Error("No users found in localStorage");
     }
 
+    for (let userId in users) {
+        const userObj = users[userId];
+
+        if (userObj.email === email && Encryption.decrypt(userObj.password, email) === password) {
+            
+            // Update online status
+            userObj.OnlineStatus = 'online';
+            
+            // Save the updated user back to localStorage
+            users[userId] = userObj;
+            localStorage.setItem("Users", JSON.stringify(users));
+
+            return { status: 'success', ...userObj };
+        }
+    }
+
+    return { status: 'error', message: "Invalid email or password" };
+}
     static createAccount(name, email, password) {
         const newUser = new User(name, email, password);
         newUser.save();

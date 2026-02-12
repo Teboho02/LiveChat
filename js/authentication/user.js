@@ -17,30 +17,95 @@ export default class User{
         this.email = email;
         this.#password = Encryption.encrypt(password, email);
         this.#userId = this.generateUniqueId();
-        this.window = window;
+        this.profilePicture = "../assets/download.jpg";
+        this.privateMessages = []; //Messages from private chats will be sent here
+        this.groupMessages = []; //Messages from group chats will be sent here
+
+        //Messages from private chats will be sent here
+
+        this.subscriptions = [];
+
+        //Messages from group chats will be sent here
+        this.subscriptionsGroups = [];
 
 
     }
+
+    //going to maintain a list of users and groups that the user is subscribed to, and update the chat interface accordingly when new messages arrive.
+
+    addUser(User){
+        this.subscriptions.push(User);
+        User.subscriptions.push(this);
+
+        
+        const users = window.localStorage.getItem("Users");
+
+
+
+        let newUsers = [];  
+
+        for(let x = 0; x < users.length; x++){
+            const userObj = JSON.parse(users[x]);
+
+            
+
+            if(userObj.email === User.email){
+                userObj.subscriptions.push(this.email);
+                break;
+            }
+
+            if(userObj.email === this.email){
+                userObj.subscriptions.push(User.email);
+                break;
+            }
+        }
+
+
+    }
+
+    addGroup(group){
+        this.subscriptionsGroups.push(group);
+        group.members.push(this);
+
+    }
+
+    listenForMessages(){
+        //This method will listen for incoming messages and update the chat interface accordingly
+
+
+    }
+
+
+
     generateUniqueId(){
         this.#userId = Date.now().toString(36) + Math.random().toString(36);
         return this.#userId;
     }
-    save(){
-        let User ={
-            name: this.name,
-            email: this.email,
-            password: this.#password,
-            userId: this.#userId
-        };
-        let UserString = JSON.stringify(User);
 
-    
-        const existingUsers = JSON.parse(localStorage.getItem("Users")) || [];
-        existingUsers.push(UserString);
-        localStorage.setItem("Users", JSON.stringify(existingUsers));
+    changeToOnline(){
+        this.status = 'online';
     }
 
-}
-const user = new User("Teboho", "teboho@example.com", "password123");
-console.log(user);
+save() {
+    let User = {
+        name: this.name,
+        email: this.email,
+        password: this.#password,
+        userId: this.#userId,
+        profilePicture: "../assets/download.jpg",
+        subscriptions: this.subscriptions,
+        subscriptionsGroups: this.subscriptionsGroups,
+    };
 
+    // Get existing users object (not array)
+    const existingUsers = JSON.parse(localStorage.getItem("Users")) || {};
+    
+    // Add/update user with userId as key
+    existingUsers[this.#userId] = User;
+    
+    // Save back to localStorage
+    localStorage.setItem("Users", JSON.stringify(existingUsers));
+}
+
+
+}

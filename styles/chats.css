@@ -1,0 +1,234 @@
+/* Chat List Styles */
+.chatList {
+    cursor: pointer;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.chatList:hover {
+    background-color: #f5f5f5;
+}
+
+.userImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.Contents {
+    flex: 1;
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.Name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+}
+
+.LastMessage {
+    font-size: 14px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Status Indicators */
+.status-online {
+    color: #4CAF50;
+}
+
+.status-offline {
+    color: #999;
+}
+
+/* Empty State */
+.empty-state {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* Message Container Styles */
+.chatHeaderTop {
+    padding: 16px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.userImageHeader {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Add User View */
+.add-user-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.add-user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.add-user-name {
+    margin: 10px 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.add-user-email {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.add-user-btn {
+    padding: 10px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.add-user-btn:hover {
+    background: #45a049;
+}
+
+/* Messages Area */
+.messagesArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+/* Message Input Area */
+.messageInputArea {
+    padding: 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 12px;
+}
+
+.messageInputArea.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.messageInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.messageInput:focus {
+    border-color: #4CAF50;
+}
+
+.messageInput:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.sendButton {
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.sendButton:hover:not(:disabled) {
+    background: #45a049;
+}
+
+.sendButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Message Bubbles */
+.message-wrapper {
+    display: flex;
+    margin: 10px 0;
+}
+
+.message-wrapper.sent {
+    justify-content: flex-end;
+}
+
+.message-wrapper.received {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.sent {
+    background: #ddecdf;
+}
+
+.message-bubble.received {
+    background: #dfdffc;
+}
+
+.message-text {
+    word-wrap: break-word;
+}
+
+.message-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* No Messages State */
+.no-messages {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
