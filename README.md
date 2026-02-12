@@ -31,11 +31,51 @@ This project highlights practical experience with DOM manipulation, event handli
 ## 📂 Project Structure
 
 ```
-liveChat/
-│── index.html
-│── style.css
-│── script.js
-│── README.md
+├── .git
+├── assets
+│   ├── download.jpg
+│   └── icons
+│       ├── group-icon.jpg
+│       ├── group-icon.png
+│       ├── group.jpg
+│       ├── group.png
+│       ├── group1.jpg
+│       ├── logo.png
+│       ├── person.png
+│       └── profile.jpg
+├── index.html
+├── js
+│   ├── authentication
+│   │   ├── auth.js
+│   │   ├── groups.js
+│   │   └── user.js
+│   ├── chatService
+│   │   └── message.js
+│   ├── chatUI.js
+│   ├── groups.js
+│   ├── login.js
+│   ├── main
+│   ├── main.js
+│   ├── profile
+│   │   └── profileFunctions.js
+│   ├── profile.js
+│   ├── sign-up.js
+│   ├── storage.js
+│   └── utils
+│       ├── encryption.js
+├── pages
+│   ├── main.html
+│   ├── profile.html
+│   ├── sign-in.html
+│   └── sign-up.html
+├── README.md
+└── styles
+    ├── chats.css
+    ├── main.css
+    ├── profile.css
+    ├── sign-in.css
+    └── sign-up.css
+
 ```
 
 ---
