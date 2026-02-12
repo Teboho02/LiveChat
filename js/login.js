@@ -9,7 +9,6 @@ form.addEventListener('submit', function(event) {
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     
-    console.log("Login attempt:", { email, password });
 
     const authennticate = Authentication.login(email, password);
 
