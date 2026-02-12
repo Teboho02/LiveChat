@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   let originalValues = {};
 
-  console.log("Current User:", currentUser);
   if (!currentUser) {
     window.location.href = "../pages/login.html";
     return;

@@ -22,7 +22,7 @@ form.addEventListener('submit', function(event) {
 
         window.location.href = './main.html'
     }else{
-        console.log("Login failed:", authennticate);
+        alert("Login failed: " + authennticate.message);
     }
     
 });
