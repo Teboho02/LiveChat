@@ -17,7 +17,8 @@ export default class User{
         this.email = email;
         this.#password = Encryption.encrypt(password, email);
         this.#userId = this.generateUniqueId();
-        this.window = window;
+        this.status = 'offline';
+
 
 
     }
@@ -25,6 +26,11 @@ export default class User{
         this.#userId = Date.now().toString(36) + Math.random().toString(36);
         return this.#userId;
     }
+
+    changeToOnline(){
+        this.status = 'online';
+    }
+
     save(){
         let User ={
             name: this.name,
@@ -41,6 +47,3 @@ export default class User{
     }
 
 }
-const user = new User("Teboho", "teboho@example.com", "password123");
-console.log(user);
-

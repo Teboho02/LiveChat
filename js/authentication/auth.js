@@ -15,11 +15,12 @@ export default class Authentication {
         for (let userObj of users) {
             userObj = JSON.parse(userObj);
 
-            if (userObj.email === '2@gmail.com') {
-                console.log(`the password is ${Encryption.decrypt('2@gmail.com', '2@gmail.com')}`);
-            }
-
             if (userObj.email === email && Encryption.decrypt(userObj.password, email) === password) {
+
+                userObj.status = 'online';
+
+                
+
                 return { status: 'success', ...userObj };
             }
         }
