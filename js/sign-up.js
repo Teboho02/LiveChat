@@ -20,7 +20,6 @@ form.addEventListener('submit', function(event) {
     let newAccount = Authentication.createAccount(name, email, password);
 
 
-    alert("new account created");
 
     window.location.href = './sign-in.html';
 
