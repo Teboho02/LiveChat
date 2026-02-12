@@ -279,3 +279,11 @@ img[id="icon"] {
     font-size: 15px;
 }
 
+
+.status-online {
+    color: #4CAF50;
+}
+
+.status-offline {
+    color: #999;
+}

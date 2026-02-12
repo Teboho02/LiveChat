@@ -12,12 +12,13 @@ form.addEventListener('submit', function(event) {
 
     const authennticate = Authentication.login(email, password);
 
+            window.sessionStorage.setItem('currentUser', JSON.stringify(authennticate));
+
   if (authennticate.status === 'success') {
 
 
         window.sessionStorage.setItem('currentUser', JSON.stringify(authennticate));
 
-        console.log("Login successful:", authennticate);
 
         window.location.href = './main.html'
     }else{
@@ -28,9 +29,7 @@ form.addEventListener('submit', function(event) {
 
 
 createAccountBtn.addEventListener('click', function() {
-    console.log("Redirecting to create account page");
 
     window.location.href = "sign-up.html";
 });
 
-console.log("Login script loaded");

@@ -17,9 +17,9 @@ export default class User{
         this.email = email;
         this.#password = Encryption.encrypt(password, email);
         this.#userId = this.generateUniqueId();
-        this.status = 'offline';
         this.profilePicture = "../assets/download.jpg";
-
+        this.privateMessages = []; //Messages from private chats will be sent here
+        this.groupMessages = []; //Messages from group chats will be sent here
 
         //Messages from private chats will be sent here
 
@@ -36,6 +36,31 @@ export default class User{
     addUser(User){
         this.subscriptions.push(User);
         User.subscriptions.push(this);
+
+        
+        const users = window.localStorage.getItem("Users");
+
+
+
+        let newUsers = [];  
+
+        for(let x = 0; x < users.length; x++){
+            const userObj = JSON.parse(users[x]);
+
+            
+
+            if(userObj.email === User.email){
+                userObj.subscriptions.push(this.email);
+                break;
+            }
+
+            if(userObj.email === this.email){
+                userObj.subscriptions.push(User.email);
+                break;
+            }
+        }
+
+
     }
 
     addGroup(group){
@@ -61,19 +86,26 @@ export default class User{
         this.status = 'online';
     }
 
-    save(){
-        let User ={
-            name: this.name,
-            email: this.email,
-            password: this.#password,
-            userId: this.#userId
-        };
-        let UserString = JSON.stringify(User);
+save() {
+    let User = {
+        name: this.name,
+        email: this.email,
+        password: this.#password,
+        userId: this.#userId,
+        profilePicture: "../assets/download.jpg",
+        subscriptions: this.subscriptions,
+        subscriptionsGroups: this.subscriptionsGroups,
+    };
 
+    // Get existing users object (not array)
+    const existingUsers = JSON.parse(localStorage.getItem("Users")) || {};
     
-        const existingUsers = JSON.parse(localStorage.getItem("Users")) || [];
-        existingUsers.push(UserString);
-        localStorage.setItem("Users", JSON.stringify(existingUsers));
-    }
+    // Add/update user with userId as key
+    existingUsers[this.#userId] = User;
+    
+    // Save back to localStorage
+    localStorage.setItem("Users", JSON.stringify(existingUsers));
+}
+
 
 }
