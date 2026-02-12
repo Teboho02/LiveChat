@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In - LiveChat</title>
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/chats.css">
+    <link rel="stylesheet" href="../styles/chats.css" />
     <script src="../js/main.js" type="module"></script>
   </head>
   <body>
@@ -14,11 +14,20 @@
         <div class="Header">
           <img src="../assets/icons/logo.png" alt="LiveChat Logo" id="icon" />
           <input class="searchBar" type="text" placeholder="Search" />
+          <a onclick="window.location.href='./profile.html'">
+          <div class="profileSection">
+            <img
+              src="../assets/icons/profile.jpg"
+              alt="Profile Avatar"
+              class="profileAvatar"
+            />
+          </div>
+          </a>
         </div>
 
         <div id="chatListContainer"></div>
 
-        <div class="bottomTabs">    
+        <div class="bottomTabs">
           <div class="tab active">Chats</div>
           <div class="tab">Groups</div>
         </div>

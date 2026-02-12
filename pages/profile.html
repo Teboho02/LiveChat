@@ -1,0 +1,57 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - LiveChat</title>
+    <link rel="stylesheet" href="../styles/profile.css">
+    <script src="../js/profile.js" type="module"></script>
+</head>
+<body>
+    <div class="Header">
+        <h1>LiveChat</h1>
+        <img src="../assets/icons/logo.png" alt="LiveChat Logo">
+    </div>
+
+    <div class="PageContent">
+        <div class="profileContainer">
+            <div class="profileLeft">
+                <div class="profileAvatar">
+                    <img src="../assets/icons/profile.jpg" alt="Profile Avatar" id="avatarImg">
+                </div>
+                <button class="formBtn editBtn" type="button" id="editBtn">Edit Profile</button>
+                <button class="formBtn logoutBtn" type="button" id="logoutBtn">Log Out</button>
+            </div>
+
+            <div class="profileRight">
+                <h2>Profile Information</h2>
+                
+                <form id="profileForm">
+                    <div class="formGroup">
+                        <label for="fullName">Full Name</label>
+                        <input class="formInputFields" type="text" id="fullName" name="fullName" readonly>
+                    </div>
+                    
+                    <div class="formGroup">
+                        <label for="email">Email</label>
+                        <input class="formInputFields" type="email" id="email" name="email" readonly>
+                    </div>
+                    
+                    
+                    <div class="formGroup">
+                        <label for="password">Password</label>
+                        <input class="formInputFields" type="password" id="password" name="password" readonly>
+                    </div>
+                    
+
+                  
+                    <div class="formActions" style="display: none;">
+                        <button class="formBtn saveBtn" type="submit" id="saveBtn">Save Changes</button>
+                        <button class="formBtn cancelBtn" type="button" id="cancelBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
