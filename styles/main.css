@@ -171,7 +171,11 @@ img[id="icon"] {
 .tab:hover {
     background-color: #d5d5d5;
 }
-
+.tab img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
 #messageContainer {
     display: flex;
     flex-direction: column;

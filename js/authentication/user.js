@@ -18,20 +18,17 @@ export default class User{
         this.#password = Encryption.encrypt(password, email);
         this.#userId = this.generateUniqueId();
         this.profilePicture = "../assets/download.jpg";
-        this.privateMessages = []; //Messages from private chats will be sent here
-        this.groupMessages = []; //Messages from group chats will be sent here
+        this.privateMessages = []; 
+        this.groupMessages = []; 
 
-        //Messages from private chats will be sent here
 
         this.subscriptions = [];
 
-        //Messages from group chats will be sent here
         this.subscriptionsGroups = [];
 
 
     }
 
-    //going to maintain a list of users and groups that the user is subscribed to, and update the chat interface accordingly when new messages arrive.
 
     addUser(User){
         this.subscriptions.push(User);
