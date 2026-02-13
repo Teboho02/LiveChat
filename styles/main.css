@@ -171,7 +171,11 @@ img[id="icon"] {
 .tab:hover {
     background-color: #d5d5d5;
 }
-
+.tab img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
 #messageContainer {
     display: flex;
     flex-direction: column;
@@ -279,3 +283,39 @@ img[id="icon"] {
     font-size: 15px;
 }
 
+
+.status-online {
+    color: #4CAF50;
+}
+
+.status-offline {
+    color: #999;
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.profileSection:hover {
+    background-color: #f0f0f0;
+}
+
+.profileAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileLabel {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+}

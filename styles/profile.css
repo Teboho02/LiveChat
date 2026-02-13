@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #F5F5F5;
+}
+
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.Header img {
+    width: 80px;
+    height: 80px;
+}
+
+.Header h1 {
+    font-weight: 700;
+    font-size: 42px;
+    color: #2D1AD2;
+}
+
+.PageContent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+.profileContainer {
+    background: #D9D9D9;
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    gap: 40px;
+}
+.profileLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 250px;
+}
+
+.profileAvatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #2D1AD2;
+    background: #FFFFFF;
+}
+
+.profileAvatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.profileLeft h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2D1AD2;
+    text-align: center;
+}
+
+.profileRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profileRight h2 {
+    font-size: 28px;
+    color: #2D1AD2;
+    margin: 0;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #B8B8B8;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formInputFields {
+    height: 45px;
+    padding: 0 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+    background: #FFFFFF;
+}
+
+
+
+.formBtn {
+    height: 45px;
+    background: #2D1AD2;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+
+
+.editBtn {
+    background: #2D1AD2;
+}
+
+
+.logoutBtn {
+    background: #E74C3C;
+}
+
+
+
+.saveBtn {
+    background: #27AE60;
+}
+
+.formActions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .profileContainer {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .profileLeft {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .profileAvatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profileRight h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Header {
+        flex-direction: column;
+    }
+
+    .Header h1 {
+        font-size: 26px;
+    }
+
+    .profileAvatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileLeft h3 {
+        font-size: 20px;
+    }
+
+    .formActions {
+        flex-direction: column;
+    }
+}

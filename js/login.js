@@ -9,25 +9,27 @@ form.addEventListener('submit', function(event) {
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     
-    console.log("Login attempt:", { email, password });
 
     const authennticate = Authentication.login(email, password);
 
+            window.sessionStorage.setItem('currentUser', JSON.stringify(authennticate));
+
   if (authennticate.status === 'success') {
-        console.log("Login successful:", authennticate);
+
+
+        window.sessionStorage.setItem('currentUser', JSON.stringify(authennticate));
+
 
         window.location.href = './main.html'
     }else{
-        console.log("Login failed:", authennticate);
+        alert("Login failed: " + authennticate.message);
     }
     
 });
 
 
 createAccountBtn.addEventListener('click', function() {
-    console.log("Redirecting to create account page");
 
     window.location.href = "sign-up.html";
 });
 
-console.log("Login script loaded");
