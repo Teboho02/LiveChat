@@ -18,6 +18,70 @@ function initializeApp() {
     setupEventListeners();
 }
 
+window.addEventListener('storage', (e) => {
+    if (e.key === 'Users' || e.key === 'Groups') {
+        console.log(`External storage update: ${e.key}`);
+        refreshAppState();
+    }
+});
+
+/**
+ * Re-fetches data from storage and refreshes the current view
+ */
+function refreshAppState() {
+    allUsers = Data.getAllUsers();
+    allGroups = Data.getAllGroups();
+    
+    // Refresh the list on the left
+    refreshActiveView();
+    
+    // Refresh the open chat window if one is active
+    const sendBtn = document.getElementById('sendBtn');
+    const sendGroupBtn = document.getElementById('sendGroupBtn');
+    const currentUser = Data.getCurrentUser();
+
+    if (sendBtn) {
+        const otherUserId = sendBtn.getAttribute('data-user-id');
+        if (otherUserId && currentUser) {
+            Messages.renderMessagesStatic(currentUser.userId, otherUserId);
+        }
+    }
+
+    if (sendGroupBtn) {
+        const groupId = sendGroupBtn.getAttribute('data-group-id');
+        if (groupId) {
+            UI.renderGroupMessages(groupId, JSON.parse(localStorage.getItem('Groups')), currentUser);
+        }
+    }
+}
+
+
+function sendGroupMessage(groupId) {
+    const input = document.getElementById('groupMessageInput');
+    const text = input.value.trim();
+    const currentUser = Data.getCurrentUser();
+    const groups = JSON.parse(localStorage.getItem('Groups')) || {};
+
+    if (text && groups[groupId]) {
+        const msg = {
+            messageId: `msg_${Date.now()}`,
+            message: text,
+            type: 'text',
+            time: new Date().toISOString(),
+            From: currentUser.userId,
+            FromName: currentUser.name,
+            To: groupId
+        };
+        groups[groupId].groupMessages = (groups[groupId].groupMessages || []);
+        groups[groupId].groupMessages.push(msg);
+        
+        Data.updateLocalStorage('Groups', groups);
+        input.value = '';
+        
+        // TRIGGER LOCAL REFRESH
+        refreshAppState(); 
+    }
+}
 
 function setupEventListeners() {
     const tabs = document.querySelectorAll('.tab');
@@ -65,7 +129,6 @@ function setupEventListeners() {
     if (addGroupBtn) addGroupBtn.addEventListener('click', createNewGroup);
 }
 
-
 function openUserChat(userId) {
     const user = allUsers.find(u => u.userId === userId);
     const currentUser = Data.getCurrentUser();
@@ -73,7 +136,6 @@ function openUserChat(userId) {
 
     const isSubscribed = currentUser.subscriptions?.includes(userId);
     const isSelf = currentUser.userId === userId;
-
 
     //check if 2 people are frinds
     let messagesHTML = `
@@ -103,7 +165,6 @@ function openUserChat(userId) {
         Messages.renderMessagesStatic(currentUser.userId, userId);
     }
 }
-
 function renderAddUserPlaceholder(user) {
     return `
         <div class="add-user-container">
@@ -112,7 +173,6 @@ function renderAddUserPlaceholder(user) {
             <button id="addUserBtn" class="add-user-btn">Add User</button>
         </div>`;
 }
-
 function sendMessage(userId) {
     const input = document.getElementById('messageInput');
     const text = input.value.trim();
@@ -126,7 +186,6 @@ function sendMessage(userId) {
         Messages.renderMessagesStatic(currentUser.userId, userId);
     }
 }
-
 function addUserToSubscriptions(userId) {
     const currentUser = Data.getCurrentUser();
     if (!currentUser) return;
@@ -138,7 +197,6 @@ function addUserToSubscriptions(userId) {
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         Data.updateUserInStorage(currentUser);
     }
-
     // Add current user to the other user's list (Mutual Subscription logic)
     const users = JSON.parse(localStorage.getItem('Users')) || {};
     const otherUser = users[userId];
@@ -151,9 +209,7 @@ function addUserToSubscriptions(userId) {
     }
     openUserChat(userId);
 }
-
 // Group chat Logic
-
 function openGroupChat(groupId) {
     const group = allGroups.find(g => g.groupId === groupId);
     const currentUser = Data.getCurrentUser();
@@ -190,13 +246,10 @@ function openGroupChat(groupId) {
         };
     }
 }
-
 function joinGroup(groupId) {
     const currentUser = Data.getCurrentUser();
     const groups = JSON.parse(localStorage.getItem('Groups')) || {};
     const group = groups[groupId];
-
-
     //first checks if im not in a group.
     if (group && currentUser && !group.members.some(m => m.userId === currentUser.userId)) {
         group.members.push({ userId: currentUser.userId, name: currentUser.name });
@@ -207,36 +260,9 @@ function joinGroup(groupId) {
     }
 }
 
-function sendGroupMessage(groupId) {
-    const input = document.getElementById('groupMessageInput');
-    const text = input.value.trim();
-    const currentUser = Data.getCurrentUser();
-    const groups = JSON.parse(localStorage.getItem('Groups')) || {};
-
-
-    //updates the specific group with gropId
-    if (text && groups[groupId]) {
-        const msg = {
-            messageId: `msg_${Date.now()}`,
-            message: text,
-            type: 'text',
-            time: new Date().toISOString(),
-            From: currentUser.userId,
-            FromName: currentUser.name,
-            To: groupId
-        };
-        groups[groupId].groupMessages = groups[groupId].groupMessages || [];
-        groups[groupId].groupMessages.push(msg);
-        Data.updateLocalStorage('Groups', groups);
-        input.value = '';
-        UI.renderGroupMessages(groupId, groups, currentUser);
-    }
-}
-
 function createNewGroup() {
     const name = prompt('Enter group name:');
-    if (!name?.trim()) return;
-
+    
     const currentUser = Data.getCurrentUser();
     const groups = JSON.parse(localStorage.getItem('Groups')) || {};
     const groupId = `group_${Date.now()}`;
@@ -258,8 +284,6 @@ function refreshActiveView() {
     if (currentTab === 'chats') UI.renderChatList(allUsers, "#chatListContainer", openUserChat);
     else UI.renderGroupsList(allGroups, "#chatListContainer", Data.getCurrentUser(), openGroupChat, createNewGroup);
 }
-
 window.openUserChat = openUserChat;
 window.openGroupChat = openGroupChat;
-
 document.addEventListener('DOMContentLoaded', initializeApp);
