@@ -20,7 +20,6 @@ function initializeApp() {
 
 window.addEventListener('storage', (e) => {
     if (e.key === 'Users' || e.key === 'Groups') {
-        console.log(`External storage update: ${e.key}`);
         refreshAppState();
     }
 });
